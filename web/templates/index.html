@@ -3,237 +3,343 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MY EARS — Spotify Mood & Content Engine</title>
+  <title>MY EARS — Spotify Mood & Curator Bot Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
     .spotify-green { color: #1DB954; }
     .bg-spotify-green { background-color: #1DB954; }
-    .bg-spotify-dark { background-color: #121212; }
     .bg-spotify-card { background-color: #181818; }
-    .bg-spotify-hover { background-color: #282828; }
+    .tab-active { border-bottom: 2px solid #1DB954; color: #1DB954; font-weight: 700; }
   </style>
 </head>
 <body class="bg-black text-gray-100 min-h-screen">
-  <div class="max-w-6xl mx-auto px-4 py-8">
+  <div class="max-w-7xl mx-auto px-4 py-8">
     <!-- Header -->
-    <header class="flex items-center justify-between pb-6 border-b border-gray-800">
+    <header class="flex flex-col md:flex-row items-center justify-between pb-6 border-b border-gray-800 gap-4">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-full bg-spotify-green flex items-center justify-center font-black text-black text-xl">
+        <div class="w-11 h-11 rounded-full bg-spotify-green flex items-center justify-center font-black text-black text-2xl shadow-lg">
           🎧
         </div>
         <div>
-          <h1 class="text-2xl font-black tracking-tight text-white">MY EARS</h1>
-          <p class="text-xs text-gray-400">Spotify Mood Engine & Influencer Campaign Studio</p>
+          <h1 class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+            MY EARS <span class="text-xs bg-gray-800 text-green-400 px-2 py-0.5 rounded-full border border-gray-700">v2.0 Full Stack</span>
+          </h1>
+          <p class="text-xs text-gray-400">Spotify Mood Engine • Curator Bot • TikTok Viral Hooks • Notion Sync</p>
         </div>
       </div>
-      <div class="flex items-center space-x-3">
-        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-800 text-gray-300 border border-gray-700">
-          ● Autonomía Activa
-        </span>
+      <!-- Tab Navigation -->
+      <div class="flex items-center space-x-6 text-sm">
+        <button id="tabBtnCurator" class="tab-active py-2 transition" onclick="switchTab('curator')">
+          ⚡ Spotify Curator Bot (TikTok & 50 Tracks)
+        </button>
+        <button id="tabBtnMood" class="text-gray-400 hover:text-white py-2 transition" onclick="switchTab('mood')">
+          🎙️ Vivencia Diaria (Esencia y Alma)
+        </button>
+        <button id="tabBtnReview" class="text-gray-400 hover:text-white py-2 transition" onclick="switchTab('review')">
+          💵 Review Assistant (SubmitHub/PlaylistPush)
+        </button>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
-      <!-- Input Panel -->
-      <section class="lg:col-span-5 space-y-6">
+    <!-- SECTION 1: CURATOR BOT MODE -->
+    <div id="sectionCurator" class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Input Column -->
+      <div class="lg:col-span-4 space-y-6">
         <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800 shadow-xl">
           <h2 class="text-lg font-bold text-white mb-2 flex items-center">
-            <span class="mr-2">🎙️</span> Tu Vivencia del Día
+            <span class="mr-2">🎯</span> Nicho & Emoción Micro
           </h2>
           <p class="text-xs text-gray-400 mb-4">
-            Cuéntame qué estás sintiendo o viviendo hoy. El motor extraerá la esencia de tu alma y creará la lista y campaña al instante.
+            Selecciona el nicho para ejecutar las 4 reglas del bot (5 títulos POV, 50 tracks con trailer, DALL-E y 4 ganchos de 7s).
           </p>
-          <form id="experienceForm" class="space-y-4">
-            <textarea
-              id="experienceText"
-              rows="4"
-              class="w-full bg-black border border-gray-700 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-spotify-green transition"
-              placeholder="Ejemplo: Hoy salí temprano a caminar bajo una mañana fría y nublada. Necesitaba silencio, desconectarme del ruido y encontrar claridad mental para empezar el nuevo ciclo..."
-              required
-            ></textarea>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <label for="volumeNumber" class="text-xs text-gray-400">Volumen:</label>
-                <input type="number" id="volumeNumber" value="1" min="1" max="99" class="w-16 bg-black border border-gray-700 rounded-lg px-2 py-1 text-xs text-center text-white">
-              </div>
-              <button
-                type="submit"
-                id="generateBtn"
-                class="bg-spotify-green hover:bg-green-500 text-black font-bold px-6 py-2.5 rounded-full text-sm transition transform hover:scale-105 active:scale-95 flex items-center space-x-2 shadow-lg"
-              >
-                <span>Generar y Publicar</span>
-                <span id="btnLoader" class="hidden">⏳</span>
-              </button>
+          <div class="space-y-4">
+            <div>
+              <label class="text-xs font-semibold text-gray-300">Nicho / Macro-Audiencia:</label>
+              <select id="curatorNiche" class="w-full mt-1.5 bg-black border border-gray-700 rounded-xl p-2.5 text-sm text-white focus:border-spotify-green">
+                <option value="indie_triste">Indie Triste (Situationship, Duelo, Nostalgia)</option>
+                <option value="rap_gimnasio">Rap de Gimnasio (PR, Fuerza, Villain Arc)</option>
+                <option value="coding_nocturno">Coding Nocturno (Deep Work, Cyberpunk, Focus)</option>
+              </select>
             </div>
-          </form>
-        </div>
-
-        <!-- Banco de Palabras Clave Preview -->
-        <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
-          <h3 class="text-sm font-bold text-white mb-3 flex items-center">
-            <span class="mr-2">💎</span> Banco de Palabras Clave de Esencia
-          </h3>
-          <div class="flex flex-wrap gap-2 text-xs">
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">claridad</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">resiliencia</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">silencio</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">origen</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">fuego</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">medianoche</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">libertad</span>
-            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">serenidad</span>
+            <div>
+              <label class="text-xs font-semibold text-gray-300">Prompt Emocional Específico (Opcional):</label>
+              <textarea id="curatorPrompt" rows="3" class="w-full mt-1.5 bg-black border border-gray-700 rounded-xl p-2.5 text-xs text-gray-200" placeholder="Ej: Romantizando el desapego a las 3 AM..."></textarea>
+            </div>
+            <button onclick="runCuratorBot()" class="w-full bg-spotify-green hover:bg-green-500 text-black font-bold py-3 rounded-xl text-sm transition transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center space-x-2">
+              <span>Ejecutar Curator Bot</span>
+              <span id="curatorLoader" class="hidden">⏳</span>
+            </button>
+            <button onclick="exportToNotion()" class="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold py-2.5 rounded-xl text-xs border border-gray-700 transition flex items-center justify-center space-x-2">
+              <span>📥 Exportar a Notion (Spotify Hustle CSV)</span>
+            </button>
           </div>
         </div>
-      </section>
 
-      <!-- Results Panel -->
-      <section class="lg:col-span-7 space-y-6">
-        <div id="welcomePlaceholder" class="bg-spotify-card p-12 rounded-2xl border border-gray-800 text-center">
-          <div class="text-5xl mb-4">🎶</div>
-          <h3 class="text-lg font-bold text-white">Listo para procesar tu vibra</h3>
+        <!-- Notion Info Card -->
+        <div class="bg-spotify-card p-5 rounded-2xl border border-gray-800">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-green-400 mb-2">Estructura Notion "Spotify Hustle"</h3>
+          <ul class="text-[11px] text-gray-400 space-y-1">
+            <li>• <strong>Nombre de Playlist:</strong> Título POV + SEO</li>
+            <li>• <strong>Status:</strong> Activa / Borrador</li>
+            <li>• <strong>Creada en Spotify:</strong> Checkbox</li>
+            <li>• <strong>Seguidores:</strong> Conteo hacia la meta de 1,000</li>
+            <li>• <strong>Ganchos TikTok:</strong> 4 variaciones de 7 segundos</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Results Column -->
+      <div class="lg:col-span-8 space-y-6">
+        <div id="curatorPlaceholder" class="bg-spotify-card p-16 rounded-2xl border border-gray-800 text-center">
+          <div class="text-5xl mb-4">🚀</div>
+          <h3 class="text-lg font-bold text-white">Curator Bot listo para ejecutar</h3>
           <p class="text-xs text-gray-400 mt-2 max-w-md mx-auto">
-            Ingresa tu vivencia a la izquierda para generar automáticamente la playlist curada en Spotify y los guiones de campaña listos para tus 2 influencers.
+            Elige tu nicho a la izquierda y dispara el paquete completo de 50 canciones, prompt DALL-E y ganchos de TikTok.
           </p>
         </div>
 
-        <div id="resultsContainer" class="hidden space-y-6">
-          <!-- Playlist Card -->
-          <div class="bg-spotify-card p-6 rounded-2xl border border-green-900/40 relative overflow-hidden">
-            <div class="flex items-start justify-between">
-              <div>
-                <span class="text-xs uppercase font-bold tracking-wider text-spotify-green">Playlist Generada</span>
-                <h2 id="resTitle" class="text-2xl font-black text-white mt-1"></h2>
-                <p id="resDesc" class="text-xs text-gray-300 mt-2 leading-relaxed"></p>
-              </div>
-              <a id="resSpotifyLink" href="#" target="_blank" class="shrink-0 bg-spotify-green text-black font-bold px-4 py-2 rounded-full text-xs hover:bg-green-400 transition">
-                Abrir en Spotify ↗
-              </a>
-            </div>
+        <div id="curatorResults" class="hidden space-y-6">
+          <!-- Regla 1: Títulos Generados -->
+          <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
+            <span class="text-xs uppercase font-bold text-spotify-green">Regla 1: Ideación Hiper-Específica (Cero Genericismos)</span>
+            <h4 class="text-sm font-bold text-white mt-1 mb-3">5 Títulos POV + Keywords SEO:</h4>
+            <div id="curatorTitlesList" class="space-y-2 text-xs"></div>
+          </div>
 
-            <!-- Tracklist -->
-            <div class="mt-6 pt-4 border-t border-gray-800">
-              <h4 class="text-xs font-bold uppercase text-gray-400 mb-3">Canciones Seleccionadas</h4>
-              <div id="resTracklist" class="space-y-2 max-h-48 overflow-y-auto pr-2"></div>
+          <!-- Regla 4: Ganchos TikTok -->
+          <div class="bg-spotify-card p-6 rounded-2xl border border-purple-900/40">
+            <span class="text-xs uppercase font-bold text-purple-400">Regla 4: Motor de Tráfico TikTok (7 Segundos)</span>
+            <p class="text-[11px] text-gray-400 mt-1 mb-3">Formato: Grabación de pantalla de Spotify + Audio de la lista + Frase superpuesta:</p>
+            <div id="tiktokHooksList" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs"></div>
+          </div>
+
+          <!-- Regla 3: Empaque Visual & SEO -->
+          <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
+            <span class="text-xs uppercase font-bold text-yellow-400">Regla 3: Empaque Visual & Metadatos SEO</span>
+            <div class="mt-3 space-y-3 text-xs">
+              <div class="bg-black p-3 rounded-xl border border-gray-800">
+                <span class="text-gray-400 font-bold block mb-1">Prompt DALL-E / Midjourney (1:1 Alto Contraste):</span>
+                <p id="dallePromptText" class="text-gray-200 italic font-mono text-[11px]"></p>
+              </div>
+              <div class="bg-black p-3 rounded-xl border border-gray-800">
+                <span class="text-gray-400 font-bold block mb-1">Descripción de Spotify (3 Líneas + Keywords SEO):</span>
+                <p id="spotifyDescText" class="text-gray-200 whitespace-pre-line text-[11px]"></p>
+              </div>
             </div>
           </div>
 
-          <!-- Influencer Campaign Stories -->
+          <!-- Regla 2: Tracklist (50 Canciones) -->
           <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
-            <h3 class="text-base font-bold text-white mb-4 flex items-center">
-              <span class="mr-2">📣</span> Campaña de Difusión para los 2 Influencers
-            </h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <!-- Creador 1 -->
-              <div class="bg-black/60 p-4 rounded-xl border border-gray-800 flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-bold text-blue-400" id="inf1Name">Alex - Cotidiano</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded">Hook 0-3s</span>
-                  </div>
-                  <div class="bg-gray-900/80 p-2.5 rounded-lg border border-gray-800 mb-3">
-                    <p class="text-xs font-semibold text-yellow-300" id="inf1Hook"></p>
-                  </div>
-                  <p class="text-xs text-gray-300 mb-2 leading-relaxed" id="inf1Voiceover"></p>
-                  <p class="text-[11px] text-gray-500 italic mb-2" id="inf1Direction"></p>
-                </div>
-                <div class="pt-2 border-t border-gray-800 text-[11px] text-spotify-green font-medium" id="inf1Cta"></div>
-              </div>
-
-              <!-- Creador 2 -->
-              <div class="bg-black/60 p-4 rounded-xl border border-gray-800 flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-bold text-purple-400" id="inf2Name">Valeria - Impulso</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded">Hook 0-3s</span>
-                  </div>
-                  <div class="bg-gray-900/80 p-2.5 rounded-lg border border-gray-800 mb-3">
-                    <p class="text-xs font-semibold text-yellow-300" id="inf2Hook"></p>
-                  </div>
-                  <p class="text-xs text-gray-300 mb-2 leading-relaxed" id="inf2Voiceover"></p>
-                  <p class="text-[11px] text-gray-500 italic mb-2" id="inf2Direction"></p>
-                </div>
-                <div class="pt-2 border-t border-gray-800 text-[11px] text-spotify-green font-medium" id="inf2Cta"></div>
-              </div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs uppercase font-bold text-blue-400">Regla 2: Curaduría Asistida (Exactamente 50 Tracks)</span>
+              <span class="text-[11px] text-gray-400">Primeras 5: El "Tráiler" de retención crítica</span>
             </div>
+            <div id="full50Tracklist" class="space-y-1.5 max-h-64 overflow-y-auto pr-2 text-xs"></div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
+
+    <!-- SECTION 2: MOOD VIVENCIA DIARIA (Legacy/Original) -->
+    <div id="sectionMood" class="hidden mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
+          <h2 class="text-lg font-bold text-white mb-2">🎙️ Tu Vivencia del Día</h2>
+          <textarea id="moodText" rows="4" class="w-full bg-black border border-gray-700 rounded-xl p-3 text-sm text-gray-200 focus:border-spotify-green" placeholder="Cuéntame qué viviste o sentiste hoy..."></textarea>
+          <div class="flex justify-between items-center mt-4">
+            <input type="number" id="moodVol" value="1" min="1" class="w-16 bg-black border border-gray-700 rounded-lg p-1 text-xs text-center text-white">
+            <button onclick="runMoodPipeline()" class="bg-spotify-green text-black font-bold px-6 py-2.5 rounded-full text-xs hover:bg-green-400 transition">Generar Playlist</button>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7" id="moodResultsArea">
+        <div class="bg-spotify-card p-8 rounded-2xl border border-gray-800 text-center text-gray-400 text-xs">
+          Ingresa una vivencia para procesar el estado de ánimo y activar las historias de Alex y Valeria.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: REVIEW ASSISTANT -->
+    <div id="sectionReview" class="hidden mt-8 max-w-3xl mx-auto bg-spotify-card p-8 rounded-2xl border border-gray-800 shadow-xl">
+      <h2 class="text-lg font-bold text-white mb-2 flex items-center">
+        <span class="mr-2">💵</span> Asistente de Reseñas para Curadores (SubmitHub / Playlist Push / Groover)
+      </h2>
+      <p class="text-xs text-gray-400 mb-6">
+        Genera respuestas constructivas (>20 palabras) para cumplir la regla editorial y evitar penalizaciones de cuenta.
+      </p>
+      <div class="grid grid-cols-2 gap-4 text-xs">
+        <div>
+          <label class="text-gray-300 font-semibold">Artista:</label>
+          <input id="revArtist" type="text" class="w-full mt-1 bg-black border border-gray-700 p-2 rounded-lg text-white" value="Luna Wave">
+        </div>
+        <div>
+          <label class="text-gray-300 font-semibold">Título de la Canción:</label>
+          <input id="revTrack" type="text" class="w-full mt-1 bg-black border border-gray-700 p-2 rounded-lg text-white" value="Midnight Whispers">
+        </div>
+        <div>
+          <label class="text-gray-300 font-semibold">Género:</label>
+          <input id="revGenre" type="text" class="w-full mt-1 bg-black border border-gray-700 p-2 rounded-lg text-white" value="Indie Pop / Dream Pop">
+        </div>
+        <div>
+          <label class="text-gray-300 font-semibold">Playlist de Destino:</label>
+          <input id="revPlaylist" type="text" class="w-full mt-1 bg-black border border-gray-700 p-2 rounded-lg text-white" value="MY EARS // NOCTURNO">
+        </div>
+        <div class="col-span-2">
+          <label class="text-gray-300 font-semibold">Decisión:</label>
+          <select id="revDecision" class="w-full mt-1 bg-black border border-gray-700 p-2 rounded-lg text-white">
+            <option value="accepted">Aceptar (Agregar a la playlist)</option>
+            <option value="declined">Declinar con Feedback Constructivo</option>
+          </select>
+        </div>
+        <div class="col-span-2">
+          <label class="text-gray-300 font-semibold">Observación Clave (Opcional):</label>
+          <input id="revNote" type="text" class="w-full mt-1 bg-black border border-gray-700 p-2 rounded-lg text-white" placeholder="Ej: La batería tiene mucho reverb en el puente...">
+        </div>
+      </div>
+      <button onclick="generateReviewFeedback()" class="mt-4 w-full bg-spotify-green text-black font-bold py-2.5 rounded-xl text-xs hover:bg-green-400 transition">
+        Generar Reseña Editorial
+      </button>
+
+      <div id="reviewResultBox" class="hidden mt-6 bg-black p-4 rounded-xl border border-gray-800 text-xs">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-spotify-green font-bold" id="revStatusBadge">FEEDBACK GENERADO</span>
+          <span class="text-gray-400" id="revWordCount"></span>
+        </div>
+        <p id="revFeedbackText" class="text-gray-200 leading-relaxed italic"></p>
+      </div>
+    </div>
   </div>
 
   <script>
-    const form = document.getElementById('experienceForm');
-    const generateBtn = document.getElementById('generateBtn');
-    const loader = document.getElementById('btnLoader');
-    const welcome = document.getElementById('welcomePlaceholder');
-    const results = document.getElementById('resultsContainer');
+    function switchTab(tab) {
+      document.getElementById('sectionCurator').classList.add('hidden');
+      document.getElementById('sectionMood').classList.add('hidden');
+      document.getElementById('sectionReview').classList.add('hidden');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const text = document.getElementById('experienceText').value;
-      const volume = parseInt(document.getElementById('volumeNumber').value) || 1;
+      document.getElementById('tabBtnCurator').className = 'text-gray-400 hover:text-white py-2 transition';
+      document.getElementById('tabBtnMood').className = 'text-gray-400 hover:text-white py-2 transition';
+      document.getElementById('tabBtnReview').className = 'text-gray-400 hover:text-white py-2 transition';
 
-      generateBtn.disabled = true;
+      if (tab === 'curator') {
+        document.getElementById('sectionCurator').classList.remove('hidden');
+        document.getElementById('tabBtnCurator').className = 'tab-active py-2 transition';
+      } else if (tab === 'mood') {
+        document.getElementById('sectionMood').classList.remove('hidden');
+        document.getElementById('tabBtnMood').className = 'tab-active py-2 transition';
+      } else {
+        document.getElementById('sectionReview').classList.remove('hidden');
+        document.getElementById('tabBtnReview').className = 'tab-active py-2 transition';
+      }
+    }
+
+    async function runCuratorBot() {
+      const niche = document.getElementById('curatorNiche').value;
+      const prompt = document.getElementById('curatorPrompt').value;
+      const loader = document.getElementById('curatorLoader');
+
       loader.classList.remove('hidden');
-
       try {
-        const response = await fetch('/api/process', {
+        const res = await fetch('/api/curator-bot', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ experience: text, volume: volume })
+          body: JSON.stringify({ niche: niche, emotional_prompt: prompt })
+        });
+        const data = await res.json();
+
+        document.getElementById('curatorPlaceholder').classList.add('hidden');
+        document.getElementById('curatorResults').classList.remove('hidden');
+
+        // Títulos
+        const titlesBox = document.getElementById('curatorTitlesList');
+        titlesBox.innerHTML = '';
+        data.rule_1_titles.forEach((t, i) => {
+          const div = document.createElement('div');
+          div.className = 'p-2 bg-black rounded-lg border border-gray-800 text-gray-200 flex items-center justify-between';
+          div.innerHTML = `<span><strong>#${i+1}:</strong> ${t}</span> <span class="text-[10px] bg-gray-800 px-2 py-0.5 rounded text-green-400">POV + SEO</span>`;
+          titlesBox.appendChild(div);
         });
 
-        const data = await response.json();
-        if (data.status === 'success') {
-          welcome.classList.add('hidden');
-          results.classList.remove('hidden');
+        // TikTok Hooks
+        const hooksBox = document.getElementById('tiktokHooksList');
+        hooksBox.innerHTML = '';
+        data.rule_4_tiktok_engine.hooks.forEach(h => {
+          const div = document.createElement('div');
+          div.className = 'bg-black p-3 rounded-xl border border-gray-800 flex flex-col justify-between';
+          div.innerHTML = `
+            <div>
+              <span class="text-[10px] text-purple-400 font-bold block mb-1">GANCHO #${h.hook_number} (7 seg):</span>
+              <p class="text-white font-semibold mb-2">"${h.overlay_text}"</p>
+            </div>
+            <div class="text-[10px] text-gray-400 border-t border-gray-800 pt-1">
+              🎵 ${h.audio_suggestion}
+            </div>
+          `;
+          hooksBox.appendChild(div);
+        });
 
-          document.getElementById('resTitle').textContent = data.selected_title;
-          document.getElementById('resDesc').textContent = data.description;
-          document.getElementById('resSpotifyLink').href = data.playlist.url;
+        // Packaging
+        document.getElementById('dallePromptText').textContent = data.rule_3_packaging.dalle_prompt;
+        document.getElementById('spotifyDescText').textContent = data.rule_3_packaging.spotify_description_3_lines;
 
-          // Tracklist
-          const tracklistEl = document.getElementById('resTracklist');
-          tracklistEl.innerHTML = '';
-          data.tracks.forEach((t, i) => {
-            const item = document.createElement('div');
-            item.className = 'flex items-center justify-between text-xs py-1.5 border-b border-gray-800/60';
-            item.innerHTML = `
-              <div class="flex items-center space-x-3">
-                <span class="text-gray-500 w-4">${i + 1}</span>
-                <span class="text-white font-medium">${t.title}</span>
-                <span class="text-gray-400">— ${t.artist}</span>
-              </div>
-              <span class="text-[10px] text-gray-500">${t.album || ''}</span>
-            `;
-            tracklistEl.appendChild(item);
-          });
+        // 50 Tracks
+        const trackBox = document.getElementById('full50Tracklist');
+        trackBox.innerHTML = '';
+        data.rule_2_tracklist.full_tracks.forEach(tr => {
+          const div = document.createElement('div');
+          const isTrailer = tr.position <= 5;
+          div.className = `flex items-center justify-between py-1 px-2 rounded ${isTrailer ? 'bg-green-950/30 border border-green-900/50' : 'border-b border-gray-800/40'}`;
+          div.innerHTML = `
+            <div class="flex items-center space-x-2">
+              <span class="text-gray-500 w-5">${tr.position}</span>
+              <span class="text-white font-medium">${tr.title}</span>
+              <span class="text-gray-400">— ${tr.artist}</span>
+            </div>
+            <span class="text-[10px] ${isTrailer ? 'text-green-400 font-bold' : 'text-gray-500'}">${tr.role}</span>
+          `;
+          trackBox.appendChild(div);
+        });
 
-          // Influencers
-          const [s1, s2] = data.campaign.scripts;
-          document.getElementById('inf1Name').textContent = s1.creator;
-          document.getElementById('inf1Hook').textContent = `"${s1.hook_0_to_3s}"`;
-          document.getElementById('inf1Voiceover').textContent = s1.voiceover_body;
-          document.getElementById('inf1Direction').textContent = `🎬 ${s1.visual_direction}`;
-          document.getElementById('inf1Cta').textContent = `🔗 CTA: ${s1.call_to_action}`;
-
-          document.getElementById('inf2Name').textContent = s2.creator;
-          document.getElementById('inf2Hook').textContent = `"${s2.hook_0_to_3s}"`;
-          document.getElementById('inf2Voiceover').textContent = s2.voiceover_body;
-          document.getElementById('inf2Direction').textContent = `🎬 ${s2.visual_direction}`;
-          document.getElementById('inf2Cta').textContent = `🔗 CTA: ${s2.call_to_action}`;
-        }
-      } catch (err) {
-        alert("Error al procesar la experiencia: " + err);
+      } catch (e) {
+        alert("Error al ejecutar Curator Bot: " + e);
       } finally {
-        generateBtn.disabled = false;
         loader.classList.add('hidden');
       }
-    });
+    }
+
+    async function exportToNotion() {
+      const niche = document.getElementById('curatorNiche').value;
+      const res = await fetch('/api/export-notion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ niche: niche })
+      });
+      const data = await res.json();
+      alert("✅ Exportado exitosamente para Notion en: " + data.file_path);
+    }
+
+    async function generateReviewFeedback() {
+      const payload = {
+        artist: document.getElementById('revArtist').value,
+        track_title: document.getElementById('revTrack').value,
+        genre: document.getElementById('revGenre').value,
+        playlist_name: document.getElementById('revPlaylist').value,
+        decision: document.getElementById('revDecision').value,
+        key_observation: document.getElementById('revNote').value
+      };
+
+      const res = await fetch('/api/review-assistant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      document.getElementById('reviewResultBox').classList.remove('hidden');
+      document.getElementById('revFeedbackText').textContent = data.feedback;
+      document.getElementById('revWordCount').textContent = `${data.word_count} palabras (Cumple SubmitHub & PlaylistPush)`;
+    }
   </script>
 </body>
 </html>

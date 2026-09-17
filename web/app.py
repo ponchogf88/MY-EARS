@@ -12,14 +12,32 @@ import json
 from pathlib import Path
 
 from core.pipeline import MyEarsPipeline
+from core.curator_bot import SpotifyCuratorBot
+from monetization.review_assistant import CuratorReviewAssistant
+from integrations.notion_sync import NotionHustleSync
 
 app = FastAPI(title="MY EARS Platform")
 templates = Jinja2Templates(directory="web/templates")
 pipeline = MyEarsPipeline()
+curator_bot = SpotifyCuratorBot()
+review_assistant = CuratorReviewAssistant()
+notion_sync = NotionHustleSync()
 
 class ExperienceRequest(BaseModel):
     experience: str
     volume: int = 1
+
+class CuratorBotRequest(BaseModel):
+    niche: str
+    emotional_prompt: str = ""
+
+class ReviewRequest(BaseModel):
+    artist: str
+    track_title: str
+    genre: str
+    playlist_name: str
+    decision: str
+    key_observation: str = ""
 
 @app.get("/", response_class=HTMLResponse)
 async def read_dashboard(request: Request):
@@ -33,6 +51,33 @@ async def process_experience(req: ExperienceRequest):
         auto_publish=True
     )
     return result
+
+@app.post("/api/curator-bot")
+async def run_curator_bot(req: CuratorBotRequest):
+    package = curator_bot.generate_curator_package(
+        niche=req.niche,
+        user_emotional_prompt=req.emotional_prompt
+    )
+    return package
+
+@app.post("/api/review-assistant")
+async def generate_review(req: ReviewRequest):
+    review = review_assistant.generate_review(
+        artist=req.artist,
+        track_title=req.track_title,
+        genre=req.genre,
+        playlist_name=req.playlist_name,
+        decision=req.decision,
+        key_observation=req.key_observation
+    )
+    return review
+
+@app.post("/api/export-notion")
+async def export_notion(req: CuratorBotRequest):
+    package = curator_bot.generate_curator_package(niche=req.niche)
+    entry = notion_sync.prepare_notion_entry(package, followers=0, spotify_url="https://open.spotify.com/playlist/simulated")
+    csv_path = notion_sync.export_to_notion_csv([entry])
+    return {"status": "exported", "file_path": csv_path, "entry": entry}
 
 @app.get("/api/ideas")
 async def get_ideas():

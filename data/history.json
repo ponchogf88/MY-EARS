@@ -143,6 +143,78 @@
       "tracks_count": 10,
       "is_simulated": true,
       "created_at": "2026-09-17T10:55:35.778238"
+    },
+    {
+      "id": "myears_1789664979",
+      "name": "MY EARS // FUEGO — Día de máxima energía y",
+      "description": "Curaduría oficial MY EARS. Capturando momentos de resiliencia y poder y la vibración de 'fuego'. Banda sonora diseñada para transformar el estado mental y acompañar tus pasos. Sincroniza tus oídos.",
+      "url": "https://open.spotify.com/playlist/myears_1789664979",
+      "uri": "spotify:playlist:myears_1789664979",
+      "tracks": [
+        {
+          "title": "Time",
+          "artist": "Hans Zimmer",
+          "album": "Inception OST",
+          "uri": "spotify:track:6ZFbIcPtQ91dnVoN8visQm"
+        },
+        {
+          "title": "Midnight City",
+          "artist": "M83",
+          "album": "Hurry Up, We're Dreaming",
+          "uri": "spotify:track:6GyFP1nfCDB87D2YRI0ilQ"
+        },
+        {
+          "title": "Can't Stop",
+          "artist": "Red Hot Chili Peppers",
+          "album": "By The Way",
+          "uri": "spotify:track:3ZOEytgrvLQIaoaqbgbbBt"
+        },
+        {
+          "title": "Till I Collapse",
+          "artist": "Eminem, Nate Dogg",
+          "album": "The Eminem Show",
+          "uri": "spotify:track:4xkOaSrkGQIO9ezTId0WJH"
+        },
+        {
+          "title": "Run Boy Run",
+          "artist": "Woodkid",
+          "album": "The Golden Age",
+          "uri": "spotify:track:0vdFrpUeR2mS4eZf6lX9Y7"
+        },
+        {
+          "title": "Sail",
+          "artist": "AWOLNATION",
+          "album": "Megalithic Symphony",
+          "uri": "spotify:track:7wGoVu4DEXVFDhu0BpBs2e"
+        },
+        {
+          "title": "Radioactive",
+          "artist": "Imagine Dragons",
+          "album": "Night Visions",
+          "uri": "spotify:track:62yJjFSm2qEGNTUKGrO7FF"
+        },
+        {
+          "title": "Way Down We Go",
+          "artist": "KALEO",
+          "album": "A/B",
+          "uri": "spotify:track:0y1QJc3BYVIxwTNnzZl42i"
+        },
+        {
+          "title": "Stronger",
+          "artist": "Kanye West",
+          "album": "Graduation",
+          "uri": "spotify:track:4fzsfWzRhPawzqhXZdoIyR"
+        },
+        {
+          "title": "Strobe",
+          "artist": "deadmau5",
+          "album": "For Lack of a Better Name",
+          "uri": "spotify:track:7H6on28d95Lz8D9h516Hn1"
+        }
+      ],
+      "tracks_count": 10,
+      "is_simulated": true,
+      "created_at": "2026-09-17T11:09:39.553750"
     }
   ],
   "campaigns": [
@@ -236,6 +308,68 @@
           "call_to_action": "Toquen el enlace aquí abajo y póngansela en bucle. Me lo agradecen después.",
           "sticker_link": "https://open.spotify.com/playlist/myears_1789664135",
           "on_screen_text": "⚡ Reset Mental Activado\nPlaylist: MY EARS // CLARIDAD — Hoy salí a caminar bajo"
+        }
+      ]
+    },
+    {
+      "campaign_id": "camp_1789664979",
+      "playlist_name": "MY EARS // CLARIDAD",
+      "playlist_url": "https://open.spotify.com/playlist/test",
+      "theme": "introspeccion profunda",
+      "created_at": "2026-09-17T11:09:39.535677",
+      "scripts": [
+        {
+          "creator": "Alex - El Observador Cotidiano",
+          "format": "Instagram Story / Reel vertical (9:16, 15-20s)",
+          "hook_0_to_3s": "¿Alguna vez han sentido que el ruido del día simplemente satura todo?",
+          "visual_direction": "Plano medio en primera persona (POV). Alex caminando con café en mano o en el auto durante una pausa, colocándose los audífonos con calma.",
+          "audio_track": "'Weightless' de Marconi Union (iniciando al segundo 0:04)",
+          "voiceover_body": "Llevaba un día pesado hasta que le di play a esta selección: 'MY EARS // CLARIDAD'. Te baja las revoluciones de golpe y te regresa a tu centro. Una joya para caminar o desconectar un rato.",
+          "call_to_action": "Les dejo el sticker directo a Spotify para que la guarden. Háganse ese favor hoy.",
+          "sticker_link": "https://open.spotify.com/playlist/test",
+          "on_screen_text": "🎧 MY EARS // CLARIDAD\nTrack: Weightless - Marconi Union"
+        },
+        {
+          "creator": "Valeria - La Impulsora de Energía",
+          "format": "TikTok / Reel vertical (9:16, 15-25s)",
+          "hook_0_to_3s": "Para un segundo... si tu energía hoy está en 20%, necesitas escuchar esto YA.",
+          "visual_direction": "Corte dinámico rápido. Al inicio: expresión agotada frente a la laptop o en el gym. Beat drop: sonríe, sube el volumen, cambia su postura y arranca con determinación.",
+          "audio_track": "'Weightless' de Marconi Union (iniciando en el punto más potente / beat drop)",
+          "voiceover_body": "Literalmente esta playlist 'MY EARS // CLARIDAD' me cambió el humor en tres minutos. Es ese empujón que necesitas para terminar lo que empezaste con todo el poder.",
+          "call_to_action": "Toquen el enlace aquí abajo y póngansela en bucle. Me lo agradecen después.",
+          "sticker_link": "https://open.spotify.com/playlist/test",
+          "on_screen_text": "⚡ Reset Mental Activado\nPlaylist: MY EARS // CLARIDAD"
+        }
+      ]
+    },
+    {
+      "campaign_id": "camp_1789664979",
+      "playlist_name": "MY EARS // FUEGO — Día de máxima energía y",
+      "playlist_url": "https://open.spotify.com/playlist/myears_1789664979",
+      "theme": "resiliencia y poder",
+      "created_at": "2026-09-17T11:09:39.554676",
+      "scripts": [
+        {
+          "creator": "Alex - El Observador Cotidiano",
+          "format": "Instagram Story / Reel vertical (9:16, 15-20s)",
+          "hook_0_to_3s": "¿Alguna vez han sentido que el ruido del día simplemente satura todo?",
+          "visual_direction": "Plano medio en primera persona (POV). Alex caminando con café en mano o en el auto durante una pausa, colocándose los audífonos con calma.",
+          "audio_track": "'Time' de Hans Zimmer (iniciando al segundo 0:04)",
+          "voiceover_body": "Llevaba un día pesado hasta que le di play a esta selección: 'MY EARS // FUEGO — Día de máxima energía y'. Te baja las revoluciones de golpe y te regresa a tu centro. Una joya para caminar o desconectar un rato.",
+          "call_to_action": "Les dejo el sticker directo a Spotify para que la guarden. Háganse ese favor hoy.",
+          "sticker_link": "https://open.spotify.com/playlist/myears_1789664979",
+          "on_screen_text": "🎧 MY EARS // FUEGO — Día de máxima energía y\nTrack: Time - Hans Zimmer"
+        },
+        {
+          "creator": "Valeria - La Impulsora de Energía",
+          "format": "TikTok / Reel vertical (9:16, 15-25s)",
+          "hook_0_to_3s": "Para un segundo... si tu energía hoy está en 20%, necesitas escuchar esto YA.",
+          "visual_direction": "Corte dinámico rápido. Al inicio: expresión agotada frente a la laptop o en el gym. Beat drop: sonríe, sube el volumen, cambia su postura y arranca con determinación.",
+          "audio_track": "'Time' de Hans Zimmer (iniciando en el punto más potente / beat drop)",
+          "voiceover_body": "Literalmente esta playlist 'MY EARS // FUEGO — Día de máxima energía y' me cambió el humor en tres minutos. Es ese empujón que necesitas para terminar lo que empezaste con todo el poder.",
+          "call_to_action": "Toquen el enlace aquí abajo y póngansela en bucle. Me lo agradecen después.",
+          "sticker_link": "https://open.spotify.com/playlist/myears_1789664979",
+          "on_screen_text": "⚡ Reset Mental Activado\nPlaylist: MY EARS // FUEGO — Día de máxima energía y"
         }
       ]
     }
