@@ -1,0 +1,87 @@
+{
+  "system_name": "MY EARS",
+  "version": "1.0.0",
+  "soul_patterns": [
+    "MY EARS // {keyword_upper} — {concept}",
+    "{keyword_title} & {essence_title} // Vol. {volume}",
+    "FRECUENCIA {keyword_upper} :: {mood}",
+    "SESIÓN {volume} : {keyword_title} en {context}",
+    "ESTADO {keyword_upper} // La Selección de Mis Oídos"
+  ],
+  "soul_categories": {
+    "introspeccion_profunda": {
+      "keywords": ["claridad", "silencio", "origen", "alma", "esencia", "pausa", "introspectivo", "calma"],
+      "spotify_criteria": {
+        "min_valence": 0.1,
+        "max_valence": 0.5,
+        "min_energy": 0.1,
+        "max_energy": 0.45,
+        "target_acousticness": 0.7,
+        "genres": ["ambient", "indie folk", "acoustic", "lo-fi", "neo-classical"]
+      },
+      "default_tags": ["introspectivo", "viaje interior", "calma reflexiva"]
+    },
+    "resiliencia_y_poder": {
+      "keywords": ["fuerza", "enfoque", "resiliencia", "triunfo", "dominio", "determinacion", "fuego", "voluntad"],
+      "spotify_criteria": {
+        "min_valence": 0.4,
+        "max_valence": 0.85,
+        "min_energy": 0.65,
+        "max_energy": 0.95,
+        "target_acousticness": 0.2,
+        "genres": ["cinematic", "rock", "hip-hop", "synthwave", "electronic"]
+      },
+      "default_tags": ["modo guerra", "disciplina", "impulso"]
+    },
+    "vibracion_alta_y_gozo": {
+      "keywords": ["luz", "gratitud", "expansion", "ritmo", "celebracion", "libertad", "solar", "vida"],
+      "spotify_criteria": {
+        "min_valence": 0.65,
+        "max_valence": 1.0,
+        "min_energy": 0.6,
+        "max_energy": 0.9,
+        "target_acousticness": 0.3,
+        "genres": ["indie pop", "funk", "latin indie", "nu-disco", "soul"]
+      },
+      "default_tags": ["buena vibra", "celebración", "energía vital"]
+    },
+    "nocturno_y_misterio": {
+      "keywords": ["sombra", "neón", "medianoche", "magnetismo", "profundidad", "eco", "vanguardia"],
+      "spotify_criteria": {
+        "min_valence": 0.2,
+        "max_valence": 0.6,
+        "min_energy": 0.4,
+        "max_energy": 0.7,
+        "target_acousticness": 0.4,
+        "genres": ["trip-hop", "synth-pop", "dark wave", "downtempo", "chillhop"]
+      },
+      "default_tags": ["viaje nocturno", "chill", "misterio"]
+    },
+    "fluir_y_desconexion": {
+      "keywords": ["deriva", "viento", "espacio", "desapego", "tranquilidad", "armonía", "serenidad"],
+      "spotify_criteria": {
+        "min_valence": 0.35,
+        "max_valence": 0.65,
+        "min_energy": 0.3,
+        "max_energy": 0.55,
+        "target_acousticness": 0.6,
+        "genres": ["chillout", "bossa nova", "ambient pop", "dream pop"]
+      },
+      "default_tags": ["desconexión", "fluyendo", "paz mental"]
+    }
+  },
+  "influencers": {
+    "influencer_1": {
+      "name": "Alex - El Observador Cotidiano",
+      "style": "Cercano, reflexivo, relata momentos del día a día (rutina, café, tráfico, pausas).",
+      "hook_style": "Visual POV o pregunta directa en los primeros 2 segundos.",
+      "tone": "Auténtico, relajado, empático"
+    },
+    "influencer_2": {
+      "name": "Valeria - La Impulsora de Energía",
+      "style": "Dinámica, activa, situaciones de cambio de estado de ánimo (entrenar, salir de la pesadez, reset mental).",
+      "hook_style": "Corte rápido con contraste de energía antes vs. después de ponerse los audífonos.",
+      "tone": "Motivador, vibrante, contundente"
+    }
+  }
+}

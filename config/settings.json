@@ -1,0 +1,15 @@
+{
+  "spotify": {
+    "client_id": "",
+    "client_secret": "",
+    "redirect_uri": "http://127.0.0.1:8888/callback",
+    "scope": "playlist-modify-public playlist-modify-private ugc-image-upload user-read-private"
+  },
+  "simulation_mode": true,
+  "default_playlist_size": 20,
+  "brand_name": "MY EARS",
+  "storage_paths": {
+    "ideas_bank": "data/ideas_bank.json",
+    "history": "data/history.json"
+  }
+}

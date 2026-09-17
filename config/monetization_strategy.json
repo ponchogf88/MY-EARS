@@ -1,0 +1,70 @@
+{
+  "platforms": {
+    "playlist_push": {
+      "name": "Playlist Push",
+      "url": "https://playlistpush.com/curators",
+      "min_followers": 1000,
+      "min_monthly_listeners": 30,
+      "min_tracks": 20,
+      "max_tracks": 150,
+      "estimated_payout_per_review": "$1.50 - $15.00 USD",
+      "verification_criteria": [
+        "100% seguidores orgánicos verificables (cero bots)",
+        "Mínimo 1,000 seguidores en al menos una playlist pública",
+        "Ratio saludable de oyentes activos vs seguidores",
+        "No incluir pistas de artistas famosos al 100% (mezclar con descubrimientos)"
+      ],
+      "status": "in_progress"
+    },
+    "submithub": {
+      "name": "SubmitHub",
+      "url": "https://www.submithub.com/apply/curator",
+      "min_followers": 400,
+      "min_monthly_listeners": 20,
+      "min_tracks": 20,
+      "max_tracks": 200,
+      "estimated_payout_per_review": "$0.50 - $2.00 USD por review estándar/premium",
+      "verification_criteria": [
+        "Feedback constructivo escrito de al menos 10 palabras por rechazo",
+        "Tiempo de respuesta rápido (< 48 horas)",
+        "Especialización clara en géneros o subgéneros"
+      ],
+      "status": "ready_to_apply"
+    },
+    "groover": {
+      "name": "Groover",
+      "url": "https://groover.co/es/influencers/",
+      "min_followers": 500,
+      "min_monthly_listeners": 25,
+      "min_tracks": 25,
+      "max_tracks": 100,
+      "estimated_payout_per_review": "1.00€ - 2.00€ por canción evaluada",
+      "verification_criteria": [
+        "Curaduría editorial con criterio artístico definido",
+        "Disposición para retroalimentación honesta y respetuosa",
+        "Perfil verificado y activo en Spotify"
+      ],
+      "status": "ready_to_apply"
+    }
+  },
+  "milestones": [
+    {
+      "step": 1,
+      "target": "300 seguidores",
+      "action": "Lanzamiento con Alex y Valeria en Stories / Reels verticales",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "target": "500 seguidores",
+      "action": "Aplicación a Groover y SubmitHub para validar primeras monetizaciones",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "target": "1,000 seguidores",
+      "action": "Aplicación oficial a Playlist Push para acceso a campañas de alto valor",
+      "status": "pending"
+    }
+  ]
+}

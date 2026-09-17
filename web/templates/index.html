@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY EARS — Spotify Mood & Content Engine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .spotify-green { color: #1DB954; }
+    .bg-spotify-green { background-color: #1DB954; }
+    .bg-spotify-dark { background-color: #121212; }
+    .bg-spotify-card { background-color: #181818; }
+    .bg-spotify-hover { background-color: #282828; }
+  </style>
+</head>
+<body class="bg-black text-gray-100 min-h-screen">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="flex items-center justify-between pb-6 border-b border-gray-800">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-spotify-green flex items-center justify-center font-black text-black text-xl">
+          🎧
+        </div>
+        <div>
+          <h1 class="text-2xl font-black tracking-tight text-white">MY EARS</h1>
+          <p class="text-xs text-gray-400">Spotify Mood Engine & Influencer Campaign Studio</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-800 text-gray-300 border border-gray-700">
+          ● Autonomía Activa
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
+      <!-- Input Panel -->
+      <section class="lg:col-span-5 space-y-6">
+        <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800 shadow-xl">
+          <h2 class="text-lg font-bold text-white mb-2 flex items-center">
+            <span class="mr-2">🎙️</span> Tu Vivencia del Día
+          </h2>
+          <p class="text-xs text-gray-400 mb-4">
+            Cuéntame qué estás sintiendo o viviendo hoy. El motor extraerá la esencia de tu alma y creará la lista y campaña al instante.
+          </p>
+          <form id="experienceForm" class="space-y-4">
+            <textarea
+              id="experienceText"
+              rows="4"
+              class="w-full bg-black border border-gray-700 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-spotify-green transition"
+              placeholder="Ejemplo: Hoy salí temprano a caminar bajo una mañana fría y nublada. Necesitaba silencio, desconectarme del ruido y encontrar claridad mental para empezar el nuevo ciclo..."
+              required
+            ></textarea>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <label for="volumeNumber" class="text-xs text-gray-400">Volumen:</label>
+                <input type="number" id="volumeNumber" value="1" min="1" max="99" class="w-16 bg-black border border-gray-700 rounded-lg px-2 py-1 text-xs text-center text-white">
+              </div>
+              <button
+                type="submit"
+                id="generateBtn"
+                class="bg-spotify-green hover:bg-green-500 text-black font-bold px-6 py-2.5 rounded-full text-sm transition transform hover:scale-105 active:scale-95 flex items-center space-x-2 shadow-lg"
+              >
+                <span>Generar y Publicar</span>
+                <span id="btnLoader" class="hidden">⏳</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Banco de Palabras Clave Preview -->
+        <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
+          <h3 class="text-sm font-bold text-white mb-3 flex items-center">
+            <span class="mr-2">💎</span> Banco de Palabras Clave de Esencia
+          </h3>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">claridad</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">resiliencia</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">silencio</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">origen</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">fuego</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">medianoche</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">libertad</span>
+            <span class="bg-gray-800 text-green-400 px-2.5 py-1 rounded-full border border-gray-700">serenidad</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Panel -->
+      <section class="lg:col-span-7 space-y-6">
+        <div id="welcomePlaceholder" class="bg-spotify-card p-12 rounded-2xl border border-gray-800 text-center">
+          <div class="text-5xl mb-4">🎶</div>
+          <h3 class="text-lg font-bold text-white">Listo para procesar tu vibra</h3>
+          <p class="text-xs text-gray-400 mt-2 max-w-md mx-auto">
+            Ingresa tu vivencia a la izquierda para generar automáticamente la playlist curada en Spotify y los guiones de campaña listos para tus 2 influencers.
+          </p>
+        </div>
+
+        <div id="resultsContainer" class="hidden space-y-6">
+          <!-- Playlist Card -->
+          <div class="bg-spotify-card p-6 rounded-2xl border border-green-900/40 relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-xs uppercase font-bold tracking-wider text-spotify-green">Playlist Generada</span>
+                <h2 id="resTitle" class="text-2xl font-black text-white mt-1"></h2>
+                <p id="resDesc" class="text-xs text-gray-300 mt-2 leading-relaxed"></p>
+              </div>
+              <a id="resSpotifyLink" href="#" target="_blank" class="shrink-0 bg-spotify-green text-black font-bold px-4 py-2 rounded-full text-xs hover:bg-green-400 transition">
+                Abrir en Spotify ↗
+              </a>
+            </div>
+
+            <!-- Tracklist -->
+            <div class="mt-6 pt-4 border-t border-gray-800">
+              <h4 class="text-xs font-bold uppercase text-gray-400 mb-3">Canciones Seleccionadas</h4>
+              <div id="resTracklist" class="space-y-2 max-h-48 overflow-y-auto pr-2"></div>
+            </div>
+          </div>
+
+          <!-- Influencer Campaign Stories -->
+          <div class="bg-spotify-card p-6 rounded-2xl border border-gray-800">
+            <h3 class="text-base font-bold text-white mb-4 flex items-center">
+              <span class="mr-2">📣</span> Campaña de Difusión para los 2 Influencers
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Creador 1 -->
+              <div class="bg-black/60 p-4 rounded-xl border border-gray-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold text-blue-400" id="inf1Name">Alex - Cotidiano</span>
+                    <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded">Hook 0-3s</span>
+                  </div>
+                  <div class="bg-gray-900/80 p-2.5 rounded-lg border border-gray-800 mb-3">
+                    <p class="text-xs font-semibold text-yellow-300" id="inf1Hook"></p>
+                  </div>
+                  <p class="text-xs text-gray-300 mb-2 leading-relaxed" id="inf1Voiceover"></p>
+                  <p class="text-[11px] text-gray-500 italic mb-2" id="inf1Direction"></p>
+                </div>
+                <div class="pt-2 border-t border-gray-800 text-[11px] text-spotify-green font-medium" id="inf1Cta"></div>
+              </div>
+
+              <!-- Creador 2 -->
+              <div class="bg-black/60 p-4 rounded-xl border border-gray-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold text-purple-400" id="inf2Name">Valeria - Impulso</span>
+                    <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded">Hook 0-3s</span>
+                  </div>
+                  <div class="bg-gray-900/80 p-2.5 rounded-lg border border-gray-800 mb-3">
+                    <p class="text-xs font-semibold text-yellow-300" id="inf2Hook"></p>
+                  </div>
+                  <p class="text-xs text-gray-300 mb-2 leading-relaxed" id="inf2Voiceover"></p>
+                  <p class="text-[11px] text-gray-500 italic mb-2" id="inf2Direction"></p>
+                </div>
+                <div class="pt-2 border-t border-gray-800 text-[11px] text-spotify-green font-medium" id="inf2Cta"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById('experienceForm');
+    const generateBtn = document.getElementById('generateBtn');
+    const loader = document.getElementById('btnLoader');
+    const welcome = document.getElementById('welcomePlaceholder');
+    const results = document.getElementById('resultsContainer');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = document.getElementById('experienceText').value;
+      const volume = parseInt(document.getElementById('volumeNumber').value) || 1;
+
+      generateBtn.disabled = true;
+      loader.classList.remove('hidden');
+
+      try {
+        const response = await fetch('/api/process', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ experience: text, volume: volume })
+        });
+
+        const data = await response.json();
+        if (data.status === 'success') {
+          welcome.classList.add('hidden');
+          results.classList.remove('hidden');
+
+          document.getElementById('resTitle').textContent = data.selected_title;
+          document.getElementById('resDesc').textContent = data.description;
+          document.getElementById('resSpotifyLink').href = data.playlist.url;
+
+          // Tracklist
+          const tracklistEl = document.getElementById('resTracklist');
+          tracklistEl.innerHTML = '';
+          data.tracks.forEach((t, i) => {
+            const item = document.createElement('div');
+            item.className = 'flex items-center justify-between text-xs py-1.5 border-b border-gray-800/60';
+            item.innerHTML = `
+              <div class="flex items-center space-x-3">
+                <span class="text-gray-500 w-4">${i + 1}</span>
+                <span class="text-white font-medium">${t.title}</span>
+                <span class="text-gray-400">— ${t.artist}</span>
+              </div>
+              <span class="text-[10px] text-gray-500">${t.album || ''}</span>
+            `;
+            tracklistEl.appendChild(item);
+          });
+
+          // Influencers
+          const [s1, s2] = data.campaign.scripts;
+          document.getElementById('inf1Name').textContent = s1.creator;
+          document.getElementById('inf1Hook').textContent = `"${s1.hook_0_to_3s}"`;
+          document.getElementById('inf1Voiceover').textContent = s1.voiceover_body;
+          document.getElementById('inf1Direction').textContent = `🎬 ${s1.visual_direction}`;
+          document.getElementById('inf1Cta').textContent = `🔗 CTA: ${s1.call_to_action}`;
+
+          document.getElementById('inf2Name').textContent = s2.creator;
+          document.getElementById('inf2Hook').textContent = `"${s2.hook_0_to_3s}"`;
+          document.getElementById('inf2Voiceover').textContent = s2.voiceover_body;
+          document.getElementById('inf2Direction').textContent = `🎬 ${s2.visual_direction}`;
+          document.getElementById('inf2Cta').textContent = `🔗 CTA: ${s2.call_to_action}`;
+        }
+      } catch (err) {
+        alert("Error al procesar la experiencia: " + err);
+      } finally {
+        generateBtn.disabled = false;
+        loader.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
